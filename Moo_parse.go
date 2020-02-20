@@ -57,7 +57,7 @@ func parseFile(file string) {
 			bookCount, _ := strconv.Atoi(firstLine[0])
 			signupLen, _ := strconv.Atoi(firstLine[1])
 			shipRate, _ := strconv.Atoi(firstLine[2])
-			libraries[i] = makeLibrary(bookCount, signupLen, shipRate, parseBookIds(secondLine))
+			libraries[i] = makeLibrary(i, bookCount, signupLen, shipRate, parseBookIds(secondLine))
 		}
 	}
 
