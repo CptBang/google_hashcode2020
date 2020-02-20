@@ -65,7 +65,7 @@ func parseFile(file string) {
 	fmt.Printf("%d\n", numBooks)
 	fmt.Printf("%d\n", numLibraries)
 	fmt.Printf("%d\n", numDays)
-
+	fmt.Printf("%d\n", len(libraries))
 }
 
 // array
