@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 //Library is a struct for holding library info for book scanning
 type Library struct {
 	bookCount int
@@ -30,4 +32,8 @@ func (l *Library) rate() {
 	}
 
 	l.rating = totalScore / timeLen
+}
+
+func (l *Library) String() string {
+	return fmt.Sprintf("<%d>  %d books, %d books/day, %d signup\nids: %v\n", l.rating, l.bookCount, l.shipRate, l.signupLen, l.booksIDs)
 }
