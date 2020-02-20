@@ -8,6 +8,8 @@ import (
 	"strings"
 )
 
+var bookScores []int
+
 func parseBookIds(secondLine []string) []int {
 	bookIds := make([]int, len(secondLine))
 	for i := 0; i < len(secondLine); i++ {
@@ -39,13 +41,13 @@ func parseFile(file string) {
 
 	// create array of book scores
 	line2 := strings.Fields(result[1])
-	bookScores := make([]int, numBooks)
+	bookScores = make([]int, numBooks)
 	for i := 0; i < numBooks; i++ {
 		bookScores[i], _ = strconv.Atoi(line2[i])
 	}
 
 	//create all libraries and put into array
-	libraries := make([]Library, numLibraries)
+	libraries := make([]*Library, numLibraries)
 	for i := 0; i < numLibraries; i++{
 		for j := 2; j < numLibraries * 2; j = j+2 {
 			firstLine := strings.Fields(result[j])

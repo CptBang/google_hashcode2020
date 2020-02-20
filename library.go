@@ -25,7 +25,7 @@ func makeLibrary(bookCount, signupLen, shipRate int, bookIDs []int) *Library {
 func (l *Library) rate() {
 	timeLen := l.signupLen + (l.bookCount / l.shipRate)
 	totalScore := 0
-	for (i := 0; i < l.bookCount; i++) {
+	for i := 0; i < l.bookCount; i++ {
 		totalScore += bookScores[l.booksIDs[i]]
 	}
 
