@@ -65,6 +65,7 @@ func parseFile(file string) {
 
 	fmt.Printf("%v\n", bookScores)
 	fmt.Printf("%v\n", libraries)
+	submit(libraries)
 }
 
 // array
