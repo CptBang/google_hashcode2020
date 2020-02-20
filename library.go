@@ -10,8 +10,7 @@ type Library struct {
 	rating int
 }
 
-//NewLibrary constructor
-func NewLibrary(bookCount, signupLen, shipRate int, bookIDs []int) *Library {
+func makeLibrary(bookCount, signupLen, shipRate int, bookIDs []int) *Library {
 	l := new(Library)
 	l.bookCount = bookCount
 	l.signupLen = signupLen
