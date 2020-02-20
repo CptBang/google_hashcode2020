@@ -9,6 +9,7 @@ func main() {
 	file := os.Args[1]
 	parseFile(file)
 
+
 	// solution := Clayton()
 	// fmt.Println(solution)
 }
