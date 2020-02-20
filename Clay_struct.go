@@ -47,32 +47,52 @@ var state = treemap.NewWithIntComparator()
 func addLib(inp *Library) {
 	// var val libElem
 	// var found bool
-	_, found := state.Get(inp.rating)
+	v, found := state.Get(inp.rating)
 	// val := v.(*Library)
-	// val := v.(deque.Deque)
+	val := v.(deque.Deque)
 
-	if found == true {
+	if found {
 		state.Put(inp.rating, inp)
-		// if val != nil {
-		// 	// val = append(val, inp)
-		// 	// val = deque.Deque(val)
-		// 	val.PushBack(inp)
-		// } else {
-		// 	state.Put(inp.rating, inp)
-		// 	// val = deqeue.NewDeque()
-		// 	// val.PushBack(inp)
-		// }
+		if val != nil {
+			val.PushFront(inp)
+		} else {
+			n := deque.NewDeque()
+			inp.rate()
+			n.PushFront(inp)
+			state.Put(inp.rating, n)
+		}
 	} else {
-		state.Put(inp.rating, inp)
+		n := deque.NewDeque()
+		inp.rate()
+		n.PushFront(inp)
+		state.Put(inp.rating, n)
 	}
 }
 
 // add library to treemap
 
+// rerate get base and call rate if different remove and reinsert
+func rerateLib() {
+	chk := getBest()
+	prev := chk.rating
+	chk.rate()
+	if chk.rating != prev {
+		delLib(chk)
+		addLib(chk)
+	}
+}
+
 // remove
 func delLib(inp *Library) {
-	// v, found := state.Get(inp.rating)
-	state.Remove(inp.rating)
+	v, found := state.Get(inp.rating)
+	val := v.(deque.Deque)
+	if found {
+		if val.Empty() {
+			state.Remove(inp.rating)
+		} else {
+			val.PopFront()
+		}
+	}
 }
 
 // get top library
