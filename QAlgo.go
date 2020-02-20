@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 func createRatedList() []*Library {
 	var libList []*Library
 
@@ -10,6 +14,7 @@ func createRatedList() []*Library {
 			currLib = getBest()
 			rerateLib()
 		}
+		fmt.Println(currLib)
 		if (currLib == nil) {
 			break
 		}

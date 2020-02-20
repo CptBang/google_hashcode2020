@@ -1,7 +1,7 @@
 package main
 
 import (
-	//"fmt"
+	"fmt"
 	"bufio"
 	"os"
 	"strconv"
@@ -59,6 +59,7 @@ func parseFile(file string) {
 			signupLen, _ := strconv.Atoi(firstLine[1])
 			shipRate, _ := strconv.Atoi(firstLine[2])
 			addLib(makeLibrary(i, bookCount, signupLen, shipRate, parseBookIds(secondLine)))
+			fmt.Println("added")
 	}
 
 	/*
