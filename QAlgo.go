@@ -10,6 +10,10 @@ func createRatedList() []*Library {
 			currLib = getBest()
 			rerateLib()
 		}
+		if (currLib == nil) {
+			break
+		}
+		delLib(currLib)
 		//currLib.sortIDsByScore()
 		libList = append(libList, currLib)
 		for _, v := range currLib.booksIDs {

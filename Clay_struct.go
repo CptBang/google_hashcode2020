@@ -84,9 +84,12 @@ func rerateLib() {
 
 // remove
 func delLib(inp *Library) {
+	if inp == nil {
+		return
+	}
 	v, found := state.Get(inp.rating)
-	val := v.(deque.Deque)
-	if found {
+	if found && v != nil {
+		val := v.(deque.Deque)
 		if val.Empty() {
 			state.Remove(inp.rating)
 		} else {
@@ -101,10 +104,17 @@ func getBest() *Library {
 	// var val *Library
 	// var val libElem
 	_, v := state.Max()
-	val := v.(deque.Deque)
-	b := val.Peek(0)
-	best := b.(*Library)
-	return best
+	if v != nil {
+		val := v.(deque.Deque)
+		if val != nil && val.Empty() == false {
+			b := val.Front()
+			if b != nil {
+				best := b.(*Library)
+				return best
+			}
+		}
+	}
+	return nil
 
 	// return val
 }
