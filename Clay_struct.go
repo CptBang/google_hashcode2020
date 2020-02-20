@@ -49,10 +49,10 @@ func addLib(inp *Library) {
 	// var found bool
 	v, found := state.Get(inp.rating)
 	// val := v.(*Library)
-	val := v.(deque.Deque)
 
-	if found {
+	if found || v != nil {
 		state.Put(inp.rating, inp)
+		val := v.(deque.Deque)
 		if val != nil {
 			val.PushFront(inp)
 		} else {
