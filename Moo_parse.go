@@ -1,11 +1,11 @@
 package main
 
 import (
-	//"fmt"
 	"bufio"
 	"os"
 	"strconv"
 	"strings"
+	"log"
 )
 
 var bookScores []int
@@ -32,41 +32,50 @@ func scanText(file string) []string {
 	return result
 }
 
-func parseFile(file string) {
-	result := scanText(file)
+func parseFile(ofile string) {
+	// result := scanText(file)
 
-	line1 := strings.Fields(result[0])
-	numBooks, _ := strconv.Atoi(line1[0]) // total number of books
-	numLibraries, _ := strconv.Atoi(line1[1]) // total number of libraries
-	numDays, _ := strconv.Atoi(line1[2]) // total number of days for scanning
-	daysLeft = numDays
+	numBooks, numLibraries, numDays := 0, 0, 0
 
-	// create array of book scores
-	line2 := strings.Fields(result[1])
-	bookScores = make([]int, numBooks)
-	for i := 0; i < numBooks; i++ {
-		bookScores[i], _ = strconv.Atoi(line2[i])
-	}
+	file, err := os.Open(ofile)
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer file.Close()
+	read := bufio.NewReader(file)
 
-	//create all libraries and put into array
-	for i := 0; i < numLibraries; i++{
-			lineNum := 2+(i*2)
-			firstLine := strings.Fields(result[lineNum])
 
-			secondLine := strings.Fields(result[lineNum+1])
+		ln1, _ := read.ReadString('\n')
+		line1 := strings.Fields(ln1)
+		numBooks, _ = strconv.Atoi(line1[0]) // total number of books
+		numLibraries, _ = strconv.Atoi(line1[1]) // total number of libraries
+		numDays, _ = strconv.Atoi(line1[2]) // total number of days for scanning
+		daysLeft = numDays
+
+		ln2, _ := read.ReadString('\n')
+		line2 := strings.Fields(ln2)
+		bookScores = make([]int, numBooks)
+		for i := 0; i < numBooks; i++ {
+			bookScores[i], _ = strconv.Atoi(line2[i])
+		}
+
+		//create all libraries and put into array
+		for i := 0; i < numLibraries; i++ {
+
+			ln3, _ := read.ReadString('\n')
+			firstLine := strings.Fields(ln3)
+
+			ln4, _ := read.ReadString('\n')
+			secondLine := strings.Fields(ln4)
 
 			bookCount, _ := strconv.Atoi(firstLine[0])
 			signupLen, _ := strconv.Atoi(firstLine[1])
 			shipRate, _ := strconv.Atoi(firstLine[2])
 			addLib(makeLibrary(i, bookCount, signupLen, shipRate, parseBookIds(secondLine)))
-	}
 
-	/*
-	fmt.Printf("%d %d %d\n", numLibraries, numBooks, numDays)
-	fmt.Printf("%v\n", bookScores)
-	*/
+
+	}
+	// fmt.Printf("%d %d %d\n", numLibraries, numBooks, numDays)
+	// fmt.Printf("%v\n", bookScores)
 }
 
-// array
-//
-//
