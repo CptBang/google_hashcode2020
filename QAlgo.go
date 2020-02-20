@@ -1,12 +1,21 @@
 package main
 
-func createRatedList() []Library {
-	var libList []Library
+func createRatedList() []*Library {
+	var libList []*Library
 
-	var currLib *Library
-	for currLib != getBest() {
-		currLib = getBest()
-		//rerate()
+
+	for daysLeft > 0 {
+		var currLib *Library
+		for currLib != getBest() {
+			currLib = getBest()
+			rerateLib()
+		}
+		//currLib.sortIDsByScore()
+		libList = append(libList, currLib)
+		for _, v := range currLib.booksIDs {
+			bookScores[v] = 0;
+		}
+		daysLeft -= currLib.signupLen
 	}
 
 	return libList

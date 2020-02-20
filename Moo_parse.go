@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
 	"bufio"
 	"os"
 	"strconv"
@@ -9,7 +9,7 @@ import (
 )
 
 var bookScores []int
-var numDays int
+var daysLeft int
 
 func parseBookIds(secondLine []string) []int {
 	bookIds := make([]int, len(secondLine))
@@ -39,6 +39,7 @@ func parseFile(file string) {
 	numBooks, _ := strconv.Atoi(line1[0]) // total number of books
 	numLibraries, _ := strconv.Atoi(line1[1]) // total number of libraries
 	numDays, _ := strconv.Atoi(line1[2]) // total number of days for scanning
+	daysLeft = numDays
 
 	// create array of book scores
 	line2 := strings.Fields(result[1])
@@ -60,9 +61,10 @@ func parseFile(file string) {
 			addLib(makeLibrary(i, bookCount, signupLen, shipRate, parseBookIds(secondLine)))
 	}
 
-	
+	/*
 	fmt.Printf("%d %d %d\n", numLibraries, numBooks, numDays)
 	fmt.Printf("%v\n", bookScores)
+	*/
 }
 
 // array
