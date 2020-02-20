@@ -8,6 +8,12 @@ import (
 	"strings"
 )
 
+// func createLibrary(lib1 string, lib2 string) Library struct {
+
+// 	NewLibrary()
+
+// }
+
 func scanText(file string) []string {
 	f, _ := os.Open(file)
 	scanner := bufio.NewScanner(f)
@@ -22,13 +28,22 @@ func scanText(file string) []string {
 
 func parseFile(file string) {
 	result := scanText(file)
+
 	line1 := strings.Fields(result[0])
-	line2 := strings.Fields(result[1])
 	numBooks, _ := strconv.Atoi(line1[0]) // total number of books
 	numLibraries, _ := strconv.Atoi(line1[1]) // total number of libraries
 	numDays, _ := strconv.Atoi(line1[2]) // total number of days for scanning
-	numoflib := (len(result) - 2) / 2
-	fmt.Printf("%d", numoflib)
+
+	line2 := strings.Fields(result[1])
+	// bookScores :=
+
+	// create all libraries and put into array
+	// var libraries [numLibraries]Library
+	// for i := 0; i < len(libraries); i++{
+	// 	for j := 2; j <
+	// 	createLibrary()
+	// }
+
 	fmt.Printf("%s", line1)
 	fmt.Printf("%s", line2)
 	fmt.Printf("%d", numBooks)
