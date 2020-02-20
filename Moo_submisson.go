@@ -23,7 +23,7 @@ func submit(libraries []*Library) {
 	for _, library := range libraries{
 		_, err := submission.WriteString(fmt.Sprintf("%d %d\n", library.libID, library.bookCount))
 		check(err)
-		for _, id := range library.bookIDs {
+		for _, id := range library.booksIDs {
 			_, err := submission.WriteString(fmt.Sprintf("%d", id))
 			check(err)
 		}
