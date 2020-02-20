@@ -37,5 +37,6 @@ func (l *Library) rate() {
 }
 
 func (l *Library) String() string {
-	return fmt.Sprintf("<%d>  %d books, %d books/day, %d signup.  \t Rating:%d\nids: %v\n", l.libID, l.bookCount, l.shipRate, l.signupLen, l.rating, l.booksIDs)
+	// return fmt.Sprintf("<%d>  %d books, %d books/day, %d signup.  \t Rating:%d\tids: %v\n", l.libID, l.bookCount, l.shipRate, l.signupLen, l.rating, l.booksIDs)
+	return fmt.Sprintf("<%d>  %d books, %d books/day, %d signup.  \t Rating:%d\n", l.libID, l.bookCount, l.shipRate, l.signupLen, l.rating)
 }

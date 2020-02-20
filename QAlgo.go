@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 )
 
 func createRatedList() []*Library {
@@ -9,12 +8,17 @@ func createRatedList() []*Library {
 
 
 	for daysLeft > 0 {
-		var currLib *Library
-		for currLib != getBest() {
-			currLib = getBest()
-			rerateLib()
-		}
-		fmt.Println(currLib)
+		// fmt.Printf("state.Size( %d )\n", state.Size())
+		// var currLib *Library
+		currLib := getBest()
+		// for currLib != getBest() {
+		// 	fmt.Printf("getBest first: %s\n", currLib)
+		// 	currLib = getBest()
+		// 	fmt.Printf("getBest second: %s\n", currLib)
+		// 	rerateLib()
+		// }
+		// fmt.Printf("state.Size( %d )\n", state.Size())
+		// fmt.Printf("currLib: %s", currLib)
 		if (currLib == nil) {
 			break
 		}
