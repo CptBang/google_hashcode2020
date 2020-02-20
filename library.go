@@ -4,6 +4,7 @@ import "fmt"
 
 //Library is a struct for holding library info for book scanning
 type Library struct {
+	libID int
 	bookCount int
 	signupLen int
 	shipRate int
@@ -12,8 +13,9 @@ type Library struct {
 	rating int
 }
 
-func makeLibrary(bookCount, signupLen, shipRate int, bookIDs []int) *Library {
+func makeLibrary(id, bookCount, signupLen, shipRate int, bookIDs []int) *Library {
 	l := new(Library)
+	l.libID = id
 	l.bookCount = bookCount
 	l.signupLen = signupLen
 	l.shipRate = shipRate
@@ -35,5 +37,5 @@ func (l *Library) rate() {
 }
 
 func (l *Library) String() string {
-	return fmt.Sprintf("<%d>  %d books, %d books/day, %d signup\nids: %v\n", l.rating, l.bookCount, l.shipRate, l.signupLen, l.booksIDs)
+	return fmt.Sprintf("<%d>  %d books, %d books/day, %d signup.  \t Rating:%d\nids: %v\n", l.libID, l.bookCount, l.shipRate, l.signupLen, l.rating, l.booksIDs)
 }
