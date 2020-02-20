@@ -1,16 +1,14 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
+	// "fmt"
 	"os"
-	"strconv"
-	"strings"
 )
 
 func main() {
 	file := os.Args[1]
+	parseFile(file)
 
-	solution := getSlices(M, K, intPizzas)
-	fmt.Println(solution)
+	// solution := Clayton()
+	// fmt.Println(solution)
 }

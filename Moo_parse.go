@@ -1,19 +1,12 @@
+package main
+
 import (
-	"bufio"
 	"fmt"
+	"bufio"
 	"os"
 	"strconv"
 	"strings"
 )
-
-// order as many slices as possible, but not more than M (first value in file) and none of the identical pizza
-
-// scan lines of file until space
-//		first two are always M - max number of slices, K - different types of pizza
-//		rest are the number of slices of each pizza stored in separate structure
-
-// dynamic programming to remember the numbers of slices
-// recursive?
 
 func scanText(file string) []string {
 	f, _ := os.Open(file)
@@ -27,44 +20,24 @@ func scanText(file string) []string {
 	return result
 }
 
-// dynamic array
-// at the dp we save the closest to M value
-// if it's greater than slices then we say it's equal to slices
-// loop through
-//	if number of slices is greater than previous and less than or equal to M, then set slices
-//
-func recurSlices(M int, K int, intPizzas []int, slices int, value int) int {
-	if slices >= M || value >= len(intPizzas) {
-		return 0
-	}
-
-	sliceOne := intPizzas[value] + recurSlices(M, K, intPizzas, slices, value+1)
-	sliceTwo := intPizzas[value] + recurSlices(M, K, intPizzas, slices, value+2)
-
-	if sliceOne >= sliceTwo && sliceOne+slices < M {
-		slices += sliceOne
-	} else if sliceTwo > sliceOne && sliceTwo+slices < M {
-		slices += sliceTwo
-	}
-	return slices
-}
-
-func getSlices(M int, K int, intPizzas []int) int {
-	// solution := make([]string, 2)
-	slices := recurSlices(M, K, intPizzas, 0, 0)
-	return slices
-}
-
-func parse(file string) {
+func parseFile(file string) {
 	result := scanText(file)
-	MK := strings.Fields(result[0])
-	strPizzas := strings.Fields(result[1])
-	M, _ := strconv.Atoi(MK[0]) //total slices
-	K, _ := strconv.Atoi(MK[1]) //number of pizzas
-	intPizzas := make([]int, K+1)
-	for i := 0; i < K; i++ {
-		intPizzas[i], _ = strconv.Atoi(strPizzas[i])
-	}
+	line1 := strings.Fields(result[0])
+	line2 := strings.Fields(result[1])
+	numBooks, _ := strconv.Atoi(line1[0]) // total number of books
+	numLibraries, _ := strconv.Atoi(line1[1]) // total number of libraries
+	numDays, _ := strconv.Atoi(line1[2]) // total number of days for scanning
+	numoflib := (len(result) - 2) / 2
+	fmt.Printf("%d", numoflib)
+	fmt.Printf("%s", line1)
+	fmt.Printf("%s", line2)
+	fmt.Printf("%d", numBooks)
+	fmt.Printf("%d", numLibraries)
+	fmt.Printf("%d", numDays)
+
+	// for i := 0; i < K; i++ {
+	// 	intPizzas[i], _ = strconv.Atoi(strPizzas[i])
+	// }
 }
 
 // array
