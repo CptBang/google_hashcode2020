@@ -9,6 +9,7 @@ import (
 )
 
 var bookScores []int
+var numDays int
 
 func parseBookIds(secondLine []string) []int {
 	bookIds := make([]int, len(secondLine))
@@ -47,7 +48,6 @@ func parseFile(file string) {
 	}
 
 	//create all libraries and put into array
-	libraries := make([]*Library, numLibraries)
 	for i := 0; i < numLibraries; i++{
 			lineNum := 2+(i*2)
 			firstLine := strings.Fields(result[lineNum])
@@ -57,14 +57,12 @@ func parseFile(file string) {
 			bookCount, _ := strconv.Atoi(firstLine[0])
 			signupLen, _ := strconv.Atoi(firstLine[1])
 			shipRate, _ := strconv.Atoi(firstLine[2])
-			libraries[i] = makeLibrary(i, bookCount, signupLen, shipRate, parseBookIds(secondLine))
+			addLib(makeLibrary(i, bookCount, signupLen, shipRate, parseBookIds(secondLine)))
 	}
 
-
+	
 	fmt.Printf("%d %d %d\n", numLibraries, numBooks, numDays)
-
 	fmt.Printf("%v\n", bookScores)
-	fmt.Printf("%v\n", libraries)
 }
 
 // array
