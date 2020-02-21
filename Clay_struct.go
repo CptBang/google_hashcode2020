@@ -118,7 +118,7 @@ func delLib(inp *Library) {
 
 // get top library
 func getBest() *Library {
-	max := 0
+	max := -999
 	var out *Library
 	for _,lib := range libs {
 		if max < lib.rating {

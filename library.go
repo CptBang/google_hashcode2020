@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"sort"
+	"fmt"
+)
 
 //Library is a struct for holding library info for book scanning
 type Library struct {
@@ -34,6 +37,14 @@ func (l *Library) rate() {
 	}
 
 	l.rating = totalScore / timeLen
+}
+
+func (l *Library) sortIDsByScore() {
+	sort.Slice(l.booksIDs, func(i, j int) bool {
+		idi := l.booksIDs[i]
+		idj := l.booksIDs[j]
+		return bookScores[idi] > bookScores[idj]
+	})
 }
 
 func (l *Library) String() string {

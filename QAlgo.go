@@ -10,7 +10,6 @@ func createRatedList() []*Library {
 	for daysLeft > 0 {
 		// fmt.Printf("state.Size( %d )\n", state.Size())
 		// var currLib *Library
-		currLib := getBest()
 		// for currLib != getBest() {
 		// 	fmt.Printf("getBest first: %s\n", currLib)
 		// 	currLib = getBest()
@@ -19,17 +18,26 @@ func createRatedList() []*Library {
 		// }
 		// fmt.Printf("state.Size( %d )\n", state.Size())
 		// fmt.Printf("currLib: %s", currLib)
+
+		currLib := getBest()
 		if (currLib == nil) {
 			break
 		}
 		delLib(currLib)
-		//currLib.sortIDsByScore()
+		currLib.sortIDsByScore()
 		libList = append(libList, currLib)
-		for _, v := range currLib.booksIDs {
-			bookScores[v] = 0;
+		for i := 0; i < currLib.shipRate * (daysLeft - currLib.signupLen); i++ {
+			if (i >= currLib.bookCount) {
+				break
+			}
+			bookScores[currLib.booksIDs[i]] = 0
 		}
 		daysLeft -= currLib.signupLen
+		rerateLib()
 	}
 
 	return libList
 }
+
+//21,725,028 original
+//
